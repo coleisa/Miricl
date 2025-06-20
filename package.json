@@ -1,12 +1,17 @@
 {
   "name": "miricl-site",
   "version": "1.0.0",
-  "description": "Miricl Drink & Beverage Website",
+  "description": "Minimalistic Miricl drink & beverage website",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
   },
+  "engines": {
+    "node": ">=14"
+  },
   "dependencies": {
     "express": "^4.18.2"
-  }
+  },
+  "author": "",
+  "license": "ISC"
 }
