@@ -1,17 +1,43 @@
 const express = require('express');
-const path = require('path');
-
 const app = express();
+
 const PORT = process.env.PORT || 3000;
 
-// Serve static files (index.html)
-app.use(express.static(path.join(__dirname)));
+// Simple HTML page
+const html = `
+  <!DOCTYPE html>
+  <html>
+    <head>
+      <title>Miricl</title>
+      <style>
+        body {
+          margin: 0;
+          padding: 0;
+          background: #0a0a23;
+          color: white;
+          font-family: sans-serif;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: 100vh;
+        }
+        h1 {
+          font-size: 3rem;
+          letter-spacing: 2px;
+        }
+      </style>
+    </head>
+    <body>
+      <h1>Welcome to Miricl</h1>
+    </body>
+  </html>
+`;
 
-// Route for root - serve index.html
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
+  console.log('GET / request received');
+  res.send(html);
 });
 
 app.listen(PORT, () => {
-  console.log(`🚀 Miricl site is live at http://localhost:${PORT} (or your Railway URL)`);
+  console.log(`🚀 Miricl site is live at http://localhost:${PORT}`);
 });
