@@ -3,8 +3,8 @@ const path = require('path');
 
 const app = express();
 
-// Use Railway's PORT if available, otherwise default to 5050 locally
-const PORT = process.env.PORT || 5050;
+// Use Railway's PORT if available, otherwise default to 8080 locally
+const PORT = process.env.PORT || 8080;
 
 // Serve static files from the "public" folder
 app.use(express.static(path.join(__dirname, 'public')));
