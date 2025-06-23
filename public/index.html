@@ -1,155 +1,155 @@
-!DOCTYPE html
-html lang=en
-head
-  meta charset=UTF-8 
-  meta name=viewport content=width=device-width, initial-scale=1.0 
-  titleMiricl - Drink Differenttitle
-  style
-    root {
-      --primary #0a0a23;  dark blue 
-      --secondary #000000;  black 
-      --text #ffffff;
-      --accent #4c8eff;  optional accent 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Miricl - Drink Different</title>
+  <style>
+    :root {
+      --primary: #0a0a23;
+      --secondary: #000000;
+      --text: #ffffff;
+      --accent: #4c8eff;
     }
 
-     {
-      margin 0;
-      padding 0;
-      box-sizing border-box;
-      font-family 'Helvetica Neue', sans-serif;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Helvetica Neue', sans-serif;
     }
 
     body {
-      background-color var(--primary);
-      color var(--text);
-      line-height 1.6;
+      background-color: var(--primary);
+      color: var(--text);
+      line-height: 1.6;
     }
 
     header {
-      background var(--secondary);
-      padding 1.5rem 2rem;
-      display flex;
-      justify-content space-between;
-      align-items center;
+      background: var(--secondary);
+      padding: 1.5rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
     header h1 {
-      font-size 1.8rem;
-      color var(--text);
+      font-size: 1.8rem;
+      color: var(--text);
     }
 
     nav a {
-      color var(--text);
-      margin-left 1.5rem;
-      text-decoration none;
-      font-size 1rem;
+      color: var(--text);
+      margin-left: 1.5rem;
+      text-decoration: none;
+      font-size: 1rem;
     }
 
     .hero {
-      height 90vh;
-      display flex;
-      align-items center;
-      justify-content center;
-      text-align center;
-      padding 2rem;
-      background linear-gradient(to bottom right, var(--primary), var(--secondary));
+      height: 90vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      background: linear-gradient(to bottom right, var(--primary), var(--secondary));
     }
 
     .hero h2 {
-      font-size 3rem;
-      margin-bottom 1rem;
+      font-size: 3rem;
+      margin-bottom: 1rem;
     }
 
     .hero p {
-      font-size 1.2rem;
-      max-width 600px;
-      margin 0 auto;
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 0 auto;
     }
 
     section {
-      padding 4rem 2rem;
-      text-align center;
+      padding: 4rem 2rem;
+      text-align: center;
     }
 
     .products, .about, .contact {
-      background-color var(--secondary);
-      margin-top 2rem;
+      background-color: var(--secondary);
+      margin-top: 2rem;
     }
 
     .products h3, .about h3, .contact h3 {
-      font-size 2rem;
-      margin-bottom 1rem;
-    }
-
-    footer {
-      text-align center;
-      padding 2rem;
-      background-color var(--primary);
-      color #aaa;
+      font-size: 2rem;
+      margin-bottom: 1rem;
     }
 
     .product-grid {
-      display grid;
-      grid-template-columns repeat(auto-fit, minmax(200px, 1fr));
-      gap 2rem;
-      margin-top 2rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
     }
 
     .product-card {
-      background #111;
-      padding 1rem;
-      border-radius 10px;
+      background: #111;
+      padding: 1rem;
+      border-radius: 10px;
     }
-  style
-head
-body
-  header
-    h1Miriclh1
-    nav
-      a href=#aboutAbouta
-      a href=#productsProductsa
-      a href=#contactContacta
-    nav
-  header
 
-  section class=hero
-    div
-      h2Drink Different with Miriclh2
-      pDiscover a new world of bold, refreshing beverages crafted to elevate your everyday experience.p
-    div
-  section
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background-color: var(--primary);
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Miricl</h1>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#products">Products</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
 
-  section id=about class=about
-    h3Our Storyh3
-    pMiricl is more than a drink—it's a lifestyle. We started with a mission to innovate the way you hydrate. Clean, bold, and crafted with care.p
-  section
+  <section class="hero">
+    <div>
+      <h2>Drink Different with Miricl</h2>
+      <p>Discover a new world of bold, refreshing beverages crafted to elevate your everyday experience.</p>
+    </div>
+  </section>
 
-  section id=products class=products
-    h3Our Beveragesh3
-    div class=product-grid
-      div class=product-card
-        h4Miricl Originalh4
-        pSignature crisp flavor with a smooth finish.p
-      div
-      div class=product-card
-        h4Miricl Citrush4
-        pA tangy twist infused with real citrus notes.p
-      div
-      div class=product-card
-        h4Miricl Zeroh4
-        pAll the flavor. Zero sugar. Zero compromise.p
-      div
-    div
-  section
+  <section id="about" class="about">
+    <h3>Our Story</h3>
+    <p>Miricl is more than a drink—it's a lifestyle. We started with a mission to innovate the way you hydrate. Clean, bold, and crafted with care.</p>
+  </section>
 
-  section id=contact class=contact
-    h3Contact Ush3
-    pEmail contact@miricl.comp
-    pFollow us on Instagram a href=# style=color var(--accent);@miricldrinksap
-  section
+  <section id="products" class="products">
+    <h3>Our Beverages</h3>
+    <div class="product-grid">
+      <div class="product-card">
+        <h4>Miricl Original</h4>
+        <p>Signature crisp flavor with a smooth finish.</p>
+      </div>
+      <div class="product-card">
+        <h4>Miricl Citrus</h4>
+        <p>A tangy twist infused with real citrus notes.</p>
+      </div>
+      <div class="product-card">
+        <h4>Miricl Zero</h4>
+        <p>All the flavor. Zero sugar. Zero compromise.</p>
+      </div>
+    </div>
+  </section>
 
-  footer
-    p&copy; 2025 Miricl. All rights reserved.p
-  footer
-body
-html
+  <section id="contact" class="contact">
+    <h3>Contact Us</h3>
+    <p>Email: contact@miricl.com</p>
+    <p>Follow us on Instagram: <a href="#" style="color: var(--accent);">@miricldrinks</a></p>
+  </section>
+
+  <footer>
+    <p>© 2025 Miricl. All rights reserved.</p>
+  </footer>
+</body>
+</html>
