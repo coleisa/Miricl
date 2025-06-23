@@ -1,12 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- ======================== META & TITLE ======================== -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Miricl - Drink Different</title>
+
+  <!-- ======================== EXTERNAL STYLES & ICONS ======================== -->
   <link href="https://fonts.googleapis.com/css2?family=Helvetica+Neue&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <!-- ======================== INTERNAL STYLES ======================== -->
   <style>
     :root {
       --primary: #0a0a23;
@@ -30,6 +35,7 @@
       scroll-behavior: smooth;
     }
 
+    /* ========== HEADER ========== */
     header {
       background: var(--secondary);
       padding: 1rem 2rem;
@@ -58,6 +64,52 @@
       font-size: 1rem;
     }
 
+    /* ========== SEARCH & CATEGORIES ========== */
+    .search-filter {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin: 2rem auto 1rem;
+      flex-wrap: wrap;
+    }
+
+    .search-filter input {
+      padding: 0.5rem;
+      border-radius: 6px;
+      border: none;
+      width: 200px;
+    }
+
+    .search-filter button {
+      padding: 0.5rem 1rem;
+      background-color: var(--accent);
+      border: none;
+      color: white;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .category-buttons {
+      text-align: center;
+      margin-top: 1rem;
+    }
+
+    .category-buttons button {
+      background-color: var(--grey);
+      color: var(--primary);
+      border: none;
+      margin: 0 0.5rem;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .category-buttons button:hover {
+      background-color: var(--accent);
+      color: white;
+    }
+
+    /* ========== HERO SECTION ========== */
     .hero {
       height: 90vh;
       display: flex;
@@ -66,6 +118,26 @@
       text-align: center;
       padding: 2rem;
       background: linear-gradient(to bottom right, var(--primary), var(--secondary));
+      position: relative;
+    }
+
+    .hero::before {
+      content: "";
+      background-image: url('nature-silhouette.png'); /* TODO: Replace with nature/health 2D silhouette */
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+      opacity: 0.05;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+
+    .hero > div {
+      z-index: 1;
     }
 
     .hero h2 {
@@ -98,16 +170,6 @@
     section {
       padding: 4rem 2rem;
       text-align: center;
-    }
-
-    .products, .about, .contact {
-      background-color: var(--secondary);
-      margin-top: 2rem;
-    }
-
-    .products h3, .about h3, .contact h3 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
     }
 
     .product-grid {
@@ -174,6 +236,7 @@
   </style>
 </head>
 <body>
+  <!-- ======================== HEADER ======================== -->
   <header>
     <div class="logo">
       <img src="your-logo.png" alt="Miricl Logo">
@@ -185,49 +248,58 @@
     </nav>
   </header>
 
+  <!-- ======================== SEARCH & CATEGORY FILTER ======================== -->
+  <div class="search-filter">
+    <input type="text" id="productSearch" placeholder="Search products...">
+    <button onclick="searchProducts()">Search</button>
+  </div>
+  <div class="category-buttons">
+    <button onclick="filterCategory('sachet')">Sachets</button>
+    <button onclick="filterCategory('can')">Cans</button>
+  </div>
+
+  <!-- ======================== HERO SECTION ======================== -->
   <section class="hero" data-aos="fade-up">
     <div>
       <h2>Drink Different with Miricl</h2>
-      <p>Discover a new world of bold, refreshing beverages crafted to elevate your everyday experience.</p>
+      <p>Discover a new world of bold, refreshing beverages crafted to elevate your healthy lifestyle.</p>
       <a href="#products" class="cta-button">Explore Beverages</a>
     </div>
   </section>
 
-  <section id="about" class="about" data-aos="fade-up">
-    <h3>Our Story</h3>
-    <p>Miricl is more than a drink—it's a lifestyle. We started with a mission to innovate the way you hydrate. Clean, bold, and crafted with care.</p>
-  </section>
-
+  <!-- ======================== PRODUCTS SECTION ======================== -->
   <section id="products" class="products" data-aos="fade-up">
     <h3>Our Beverages</h3>
-    <div class="product-grid">
-      <div class="product-card" data-aos="zoom-in">
+    <div class="product-grid" id="productList">
+      <div class="product-card" data-aos="zoom-in" data-category="can">
         <img src="can-product.jpg" alt="Miricl Original Can">
         <h4>Miricl Original</h4>
         <p>Signature crisp flavor with a smooth finish.</p>
         <a href="mailto:shopmiricl@gmail.com?subject=Order%20Miricl%20Original" class="order-button">Order Now</a>
       </div>
-      <div class="product-card" data-aos="zoom-in">
+      <div class="product-card" data-aos="zoom-in" data-category="sachet">
         <img src="sachet-product.jpg" alt="Miricl Citrus Sachet">
         <h4>Miricl Citrus</h4>
         <p>A tangy twist infused with real citrus notes.</p>
         <a href="mailto:shopmiricl@gmail.com?subject=Order%20Miricl%20Citrus" class="order-button">Order Now</a>
       </div>
-      <div class="product-card" data-aos="zoom-in">
-        <img src="sachet-product.jpg" alt="Miricl Zero Sachet">
-        <h4>Miricl Zero</h4>
-        <p>All the flavor. Zero sugar. Zero compromise.</p>
-        <a href="mailto:shopmiricl@gmail.com?subject=Order%20Miricl%20Zero" class="order-button">Order Now</a>
+      <div class="product-card" data-aos="zoom-in" data-category="sachet">
+        <img src="sachet-product.jpg" alt="Miricl Vitality Boost">
+        <h4>Miricl Vitality Boost</h4>
+        <p>Infused with green tea, ginseng, and moringa to energize your day naturally.</p>
+        <a href="mailto:shopmiricl@gmail.com?subject=Order%20Miricl%20Vitality%20Boost" class="order-button">Order Now</a>
       </div>
     </div>
   </section>
 
+  <!-- ======================== CONTACT SECTION ======================== -->
   <section id="contact" class="contact" data-aos="fade-up">
     <h3>Contact Us</h3>
     <p>Email: <a href="mailto:shopmiricl@gmail.com" style="color: var(--accent);">shopmiricl@gmail.com</a></p>
     <p>Follow us on Instagram: <a href="https://instagram.com/shopmiricl" style="color: var(--accent);" target="_blank">@shopmiricl</a></p>
   </section>
 
+  <!-- ======================== FOOTER ======================== -->
   <footer>
     <div class="socials">
       <a href="https://instagram.com/shopmiricl" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
@@ -235,12 +307,29 @@
     <p>© 2025 Miricl. All rights reserved.</p>
   </footer>
 
+  <!-- ======================== SCRIPTS ======================== -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
     AOS.init({
       duration: 1000,
       once: true
     });
+
+    function searchProducts() {
+      const input = document.getElementById('productSearch').value.toLowerCase();
+      const cards = document.querySelectorAll('.product-card');
+      cards.forEach(card => {
+        const title = card.querySelector('h4').innerText.toLowerCase();
+        card.style.display = title.includes(input) ? 'block' : 'none';
+      });
+    }
+
+    function filterCategory(category) {
+      const cards = document.querySelectorAll('.product-card');
+      cards.forEach(card => {
+        card.style.display = card.getAttribute('data-category') === category ? 'block' : 'none';
+      });
+    }
   </script>
 </body>
 </html>
