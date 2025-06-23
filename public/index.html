@@ -6,6 +6,7 @@
   <title>Miricl - Drink Different</title>
   <link href="https://fonts.googleapis.com/css2?family=Helvetica+Neue&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <style>
     :root {
       --primary: #0a0a23;
@@ -65,7 +66,6 @@
       text-align: center;
       padding: 2rem;
       background: linear-gradient(to bottom right, var(--primary), var(--secondary));
-      animation: fadeIn 2s ease-in;
     }
 
     .hero h2 {
@@ -103,7 +103,6 @@
     .products, .about, .contact {
       background-color: var(--secondary);
       margin-top: 2rem;
-      animation: fadeInUp 1.2s ease forwards;
     }
 
     .products h3, .about h3, .contact h3 {
@@ -167,16 +166,6 @@
       transform: scale(1.2);
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
     @media (max-width: 600px) {
       .hero h2 { font-size: 2rem; }
       .hero p { font-size: 1rem; }
@@ -196,7 +185,7 @@
     </nav>
   </header>
 
-  <section class="hero">
+  <section class="hero" data-aos="fade-up">
     <div>
       <h2>Drink Different with Miricl</h2>
       <p>Discover a new world of bold, refreshing beverages crafted to elevate your everyday experience.</p>
@@ -204,27 +193,27 @@
     </div>
   </section>
 
-  <section id="about" class="about">
+  <section id="about" class="about" data-aos="fade-up">
     <h3>Our Story</h3>
     <p>Miricl is more than a drink—it's a lifestyle. We started with a mission to innovate the way you hydrate. Clean, bold, and crafted with care.</p>
   </section>
 
-  <section id="products" class="products">
+  <section id="products" class="products" data-aos="fade-up">
     <h3>Our Beverages</h3>
     <div class="product-grid">
-      <div class="product-card">
+      <div class="product-card" data-aos="zoom-in">
         <img src="can-product.jpg" alt="Miricl Original Can">
         <h4>Miricl Original</h4>
         <p>Signature crisp flavor with a smooth finish.</p>
         <a href="mailto:shopmiricl@gmail.com?subject=Order%20Miricl%20Original" class="order-button">Order Now</a>
       </div>
-      <div class="product-card">
+      <div class="product-card" data-aos="zoom-in">
         <img src="sachet-product.jpg" alt="Miricl Citrus Sachet">
         <h4>Miricl Citrus</h4>
         <p>A tangy twist infused with real citrus notes.</p>
         <a href="mailto:shopmiricl@gmail.com?subject=Order%20Miricl%20Citrus" class="order-button">Order Now</a>
       </div>
-      <div class="product-card">
+      <div class="product-card" data-aos="zoom-in">
         <img src="sachet-product.jpg" alt="Miricl Zero Sachet">
         <h4>Miricl Zero</h4>
         <p>All the flavor. Zero sugar. Zero compromise.</p>
@@ -233,7 +222,7 @@
     </div>
   </section>
 
-  <section id="contact" class="contact">
+  <section id="contact" class="contact" data-aos="fade-up">
     <h3>Contact Us</h3>
     <p>Email: <a href="mailto:shopmiricl@gmail.com" style="color: var(--accent);">shopmiricl@gmail.com</a></p>
     <p>Follow us on Instagram: <a href="https://instagram.com/shopmiricl" style="color: var(--accent);" target="_blank">@shopmiricl</a></p>
@@ -245,5 +234,13 @@
     </div>
     <p>© 2025 Miricl. All rights reserved.</p>
   </footer>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1000,
+      once: true
+    });
+  </script>
 </body>
 </html>
