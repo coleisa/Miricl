@@ -11,7 +11,7 @@
       --primary: #0a0a23;
       --secondary: #000000;
       --text: #ffffff;
-      --accent: #1a2a6c;
+      --accent: #0d1321; /* Deep Navy Blue */
       --grey: #cccccc;
     }
 
@@ -29,33 +29,27 @@
       scroll-behavior: smooth;
     }
 
-    /* Header */
+    /* === HEADER === */
     header {
       background: var(--secondary);
       padding: 1rem 2rem;
       display: flex;
-      justify-content: space-between;
-      align-items: center;
       flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
       position: sticky;
       top: 0;
       z-index: 1000;
     }
 
-    .logo {
-      display: flex;
-      align-items: center;
-    }
-
     .logo img {
       height: 40px;
-      margin-right: 10px;
     }
 
     nav {
       display: flex;
       gap: 1.5rem;
-      align-items: center;
+      flex-wrap: wrap;
     }
 
     nav a {
@@ -68,9 +62,9 @@
       display: flex;
       align-items: center;
       margin-top: 0.5rem;
-      margin-left: auto;
       background-color: var(--accent);
       border-radius: 5px;
+      flex-wrap: nowrap;
     }
 
     .search-bar input {
@@ -83,7 +77,7 @@
     }
 
     .search-bar input::placeholder {
-      color: #ddd;
+      color: #aaa;
     }
 
     .search-bar button {
@@ -99,7 +93,7 @@
       gap: 0.5rem;
     }
 
-    /* Hero */
+    /* === HERO === */
     .hero {
       height: 90vh;
       display: flex;
@@ -135,10 +129,10 @@
     }
 
     .cta-button:hover {
-      background-color: #132054;
+      background-color: #050a14;
     }
 
-    /* Sections */
+    /* === SECTIONS === */
     section {
       padding: 4rem 2rem;
       text-align: center;
@@ -160,9 +154,13 @@
     .products h3, .about h3, .contact h3 {
       font-size: 2rem;
       margin-bottom: 1rem;
+      border-top: 2px solid var(--accent);
+      border-bottom: 2px solid var(--accent);
+      display: inline-block;
+      padding: 0.5rem 1rem;
     }
 
-    /* Product Grid */
+    /* === PRODUCT GRID === */
     .product-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -191,13 +189,13 @@
       margin-top: 1rem;
       display: inline-block;
       padding: 0.5rem 1rem;
-      background-color: #2a3d8f;
+      background-color: #050a14;
       color: var(--text);
       border-radius: 5px;
       text-decoration: none;
     }
 
-    /* Footer */
+    /* === FOOTER === */
     footer {
       text-align: center;
       padding: 2rem;
@@ -220,24 +218,49 @@
       transform: scale(1.2);
     }
 
+    /* === ANIMATIONS === */
     @keyframes fadeIn {
       from { opacity: 0; }
       to { opacity: 1; }
     }
 
-    @media (max-width: 600px) {
-      .hero h2 { font-size: 2rem; }
-      .hero p { font-size: 1rem; }
-      nav { flex-direction: column; gap: 0.5rem; }
-      .search-bar {
-        margin-top: 1rem;
-        justify-content: center;
+    /* === RESPONSIVE === */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+      }
+
+      nav {
+        flex-direction: column;
+        gap: 0.5rem;
         width: 100%;
+      }
+
+      .search-bar {
+        width: 100%;
+        margin-top: 0.5rem;
+      }
+
+      .search-bar input {
+        flex: 1;
+        width: 100%;
+      }
+
+      .hero h2 {
+        font-size: 2rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
       }
     }
   </style>
 </head>
 <body>
+
+  <!-- === HEADER === -->
   <header>
     <div class="logo">
       <img src="your-logo.png" alt="Miricl Logo">
@@ -249,10 +272,11 @@
     </nav>
     <div class="search-bar">
       <input type="text" placeholder="Search..." />
-      <button><i class="fas fa-search"></i> Search</button>
+      <button><i class="fas fa-search"></i></button>
     </div>
   </header>
 
+  <!-- === HERO === -->
   <section class="hero">
     <div>
       <h2>Drink Different with Miricl</h2>
@@ -261,11 +285,13 @@
     </div>
   </section>
 
+  <!-- === ABOUT === -->
   <section id="about" class="about">
     <h3>Our Story</h3>
     <p>Miricl is more than a drink—it's a lifestyle. We started with a mission to innovate the way you hydrate. Clean, bold, and crafted with care.</p>
   </section>
 
+  <!-- === PRODUCTS === -->
   <section id="products" class="products">
     <h3>Our Beverages</h3>
     <div class="product-grid">
@@ -290,12 +316,14 @@
     </div>
   </section>
 
+  <!-- === CONTACT === -->
   <section id="contact" class="contact">
     <h3>Contact Us</h3>
     <p>Email: <a href="mailto:shopmiricl@gmail.com" style="color: var(--accent);">shopmiricl@gmail.com</a></p>
     <p>Follow us on Instagram: <a href="https://instagram.com/shopmiricl" style="color: var(--accent);" target="_blank">@shopmiricl</a></p>
   </section>
 
+  <!-- === FOOTER === -->
   <footer>
     <div class="socials">
       <a href="https://instagram.com/shopmiricl" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
@@ -303,8 +331,8 @@
     <p>© 2025 Miricl. All rights reserved.</p>
   </footer>
 
+  <!-- === SCRIPT === -->
   <script>
-    // Scroll fade-in animation
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
