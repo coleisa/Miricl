@@ -11,7 +11,7 @@
       --primary: #0a0a23;
       --secondary: #000000;
       --text: #ffffff;
-      --accent: #0b1f4a; /* darker navy blue */
+      --accent: #0d1321;
       --grey: #cccccc;
     }
 
@@ -29,14 +29,12 @@
       scroll-behavior: smooth;
     }
 
-    /* === HEADER === */
     header {
       background: var(--secondary);
       padding: 1rem 2rem;
       display: flex;
-      flex-direction: column;
       align-items: center;
-      gap: 0.5rem;
+      justify-content: space-between;
       position: sticky;
       top: 0;
       z-index: 1000;
@@ -49,21 +47,26 @@
     nav {
       display: flex;
       gap: 1.5rem;
-      flex-wrap: nowrap;
-      justify-content: center;
-      flex: 1;
+      align-items: center;
     }
 
     nav a {
       color: var(--text);
       text-decoration: none;
       font-size: 1rem;
-      white-space: nowrap;
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--text);
     }
 
     .search-bar {
       display: flex;
       align-items: center;
+      margin-top: 0.5rem;
       background-color: var(--accent);
       border-radius: 5px;
     }
@@ -77,6 +80,10 @@
       border-radius: 5px 0 0 5px;
     }
 
+    .search-bar input::placeholder {
+      color: #aaa;
+    }
+
     .search-bar button {
       padding: 0.5rem 1rem;
       background-color: var(--accent);
@@ -85,16 +92,8 @@
       border-radius: 0 5px 5px 0;
       cursor: pointer;
       font-weight: bold;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
     }
 
-    .search-bar i {
-      color: var(--text);
-    }
-
-    /* === HERO === */
     .hero {
       height: 90vh;
       display: flex;
@@ -130,40 +129,31 @@
     }
 
     .cta-button:hover {
-      background-color: #09193a;
+      background-color: #050a14;
     }
 
     section {
       padding: 4rem 2rem;
       text-align: center;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.6s ease-out;
     }
 
-    .products, .about, .contact {
-      background-color: var(--secondary);
-      margin-top: 2rem;
-      animation: fadeInUp 1.2s ease forwards;
+    section.in-view {
+      opacity: 1;
+      transform: translateY(0);
     }
 
+    /* Centered subheadings */
     .products h3, .about h3, .contact h3 {
       font-size: 2rem;
       margin-bottom: 1rem;
-      position: relative;
-    }
-
-    .products h3::before,
-    .about h3::before,
-    .contact h3::before {
-      content: "===";
-      margin-right: 0.5rem;
-      color: var(--accent);
-    }
-
-    .products h3::after,
-    .about h3::after,
-    .contact h3::after {
-      content: "===";
-      margin-left: 0.5rem;
-      color: var(--accent);
+      border-top: 2px solid var(--accent);
+      border-bottom: 2px solid var(--accent);
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      text-align: center;
     }
 
     .product-grid {
@@ -174,14 +164,15 @@
     }
 
     .product-card {
-      background: #111;
+      background: var(--accent);
       padding: 1rem;
       border-radius: 10px;
-      transition: transform 0.3s ease;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
     .product-card:hover {
-      transform: translateY(-10px);
+      transform: translateY(-8px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
     }
 
     .product-card img {
@@ -194,7 +185,7 @@
       margin-top: 1rem;
       display: inline-block;
       padding: 0.5rem 1rem;
-      background-color: var(--accent);
+      background-color: #050a14;
       color: var(--text);
       border-radius: 5px;
       text-decoration: none;
@@ -227,19 +218,38 @@
       to { opacity: 1; }
     }
 
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
+    /* === MOBILE === */
     @media (max-width: 768px) {
-      nav {
-        justify-content: center;
-        flex-wrap: wrap;
+      header {
+        flex-direction: column;
+        align-items: flex-start;
       }
 
-      header {
+      .menu-toggle {
+        display: block;
+      }
+
+      nav {
+        display: none;
+        flex-direction: column;
         gap: 0.75rem;
+        width: 100%;
+        margin-top: 1rem;
+      }
+
+      nav.show {
+        display: flex;
+      }
+
+      nav a {
+        writing-mode: vertical-rl;
+        text-align: center;
+        transform: rotate(180deg);
+      }
+
+      .search-bar {
+        width: 100%;
+        margin-top: 0.5rem;
       }
 
       .hero h2 {
@@ -249,31 +259,29 @@
       .hero p {
         font-size: 1rem;
       }
-
-      nav a {
-        font-size: 0.9rem;
-      }
     }
   </style>
 </head>
 <body>
+
+  <!-- === HEADER === -->
   <header>
     <div class="logo">
       <img src="your-logo.png" alt="Miricl Logo">
     </div>
-    <nav>
+    <div class="menu-toggle" id="menu-toggle"><i class="fas fa-bars"></i> Menu</div>
+    <nav id="main-nav">
       <a href="#about">About</a>
       <a href="#products">Products</a>
       <a href="#contact">Contact</a>
     </nav>
-    <form class="search-bar" action="#" method="GET">
-      <input type="text" name="q" placeholder="Search..." />
-      <button type="submit">
-        <i class="fas fa-search"></i> Search
-      </button>
-    </form>
+    <div class="search-bar">
+      <input type="text" placeholder="Search..." />
+      <button><i class="fas fa-search"></i></button>
+    </div>
   </header>
 
+  <!-- === HERO === -->
   <section class="hero">
     <div>
       <h2>Drink Different with Miricl</h2>
@@ -282,11 +290,13 @@
     </div>
   </section>
 
+  <!-- === ABOUT === -->
   <section id="about" class="about">
     <h3>Our Story</h3>
     <p>Miricl is more than a drink—it's a lifestyle. We started with a mission to innovate the way you hydrate. Clean, bold, and crafted with care.</p>
   </section>
 
+  <!-- === PRODUCTS === -->
   <section id="products" class="products">
     <h3>Our Beverages</h3>
     <div class="product-grid">
@@ -311,17 +321,39 @@
     </div>
   </section>
 
+  <!-- === CONTACT === -->
   <section id="contact" class="contact">
     <h3>Contact Us</h3>
     <p>Email: <a href="mailto:shopmiricl@gmail.com" style="color: var(--accent);">shopmiricl@gmail.com</a></p>
     <p>Follow us on Instagram: <a href="https://instagram.com/shopmiricl" style="color: var(--accent);" target="_blank">@shopmiricl</a></p>
   </section>
 
+  <!-- === FOOTER === -->
   <footer>
     <div class="socials">
       <a href="https://instagram.com/shopmiricl" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
     </div>
     <p>© 2025 Miricl. All rights reserved.</p>
   </footer>
+
+  <!-- === SCRIPT === -->
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('section').forEach(section => {
+      observer.observe(section);
+    });
+
+    // Mobile nav toggle
+    document.getElementById('menu-toggle').addEventListener('click', () => {
+      document.getElementById('main-nav').classList.toggle('show');
+    });
+  </script>
 </body>
 </html>
