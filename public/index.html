@@ -8,12 +8,12 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
-      --primary: #050a14; /* Darker blue */
+      --primary: #050a14;
       --secondary: #0a0a23;
+      --accent: #0d1321;
       --text: #ffffff;
-      --accent: #14213d;
-      --grey: #cccccc;
-      --footer-link: #1f3b6e;
+      --light-blue: #1a1f3c;
+      --link-hover: #334266;
     }
 
     * {
@@ -34,6 +34,7 @@
       background: var(--secondary);
       padding: 1rem 2rem;
       display: flex;
+      flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
       position: sticky;
@@ -47,18 +48,18 @@
 
     .menu-toggle {
       display: none;
-      background-color: var(--secondary);
-      color: white;
+      background-color: var(--primary);
+      color: var(--text);
       border: 2px solid var(--accent);
       padding: 0.5rem 1rem;
-      font-size: 1rem;
       cursor: pointer;
-      border-radius: 5px;
     }
 
     nav {
       display: flex;
       gap: 1.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
     }
 
     nav a {
@@ -70,9 +71,10 @@
     .search-bar {
       display: flex;
       align-items: center;
+      margin-top: 0.5rem;
       background-color: var(--accent);
       border-radius: 5px;
-      padding-right: 0.5rem;
+      flex-wrap: nowrap;
     }
 
     .search-bar input {
@@ -89,22 +91,27 @@
     }
 
     .search-bar button {
-      margin-left: 0.5rem;
-      background-color: transparent;
+      padding: 0.5rem 1rem;
+      margin-left: 5px;
+      background-color: var(--accent);
       color: var(--text);
       border: none;
-      font-size: 1rem;
+      border-radius: 0 5px 5px 0;
       cursor: pointer;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
     }
 
     .hero {
-      min-height: 90vh;
+      height: 90vh;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
       padding: 2rem;
-      background-color: var(--primary);
+      background: var(--primary);
     }
 
     .hero h2 {
@@ -131,21 +138,20 @@
     }
 
     .cta-button:hover {
-      background-color: #000814;
+      background-color: var(--link-hover);
     }
 
     section {
       padding: 4rem 2rem;
       text-align: center;
-    }
-
-    .products, .about, .contact {
       background-color: var(--secondary);
     }
 
     .products h3, .about h3, .contact h3 {
       font-size: 2rem;
       margin-bottom: 1rem;
+      border-top: 2px solid var(--accent);
+      border-bottom: 2px solid var(--accent);
       display: inline-block;
       padding: 0.5rem 1rem;
     }
@@ -161,6 +167,11 @@
       background: var(--accent);
       padding: 1rem;
       border-radius: 10px;
+      transition: transform 0.3s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-10px);
     }
 
     .product-card img {
@@ -173,7 +184,7 @@
       margin-top: 1rem;
       display: inline-block;
       padding: 0.5rem 1rem;
-      background-color: #050a14;
+      background-color: var(--primary);
       color: var(--text);
       border-radius: 5px;
       text-decoration: none;
@@ -183,7 +194,7 @@
       text-align: center;
       padding: 2rem;
       background-color: var(--primary);
-      color: #aaa;
+      color: var(--link-hover);
     }
 
     .socials {
@@ -191,10 +202,14 @@
     }
 
     .socials a {
-      color: var(--footer-link);
+      color: var(--text);
       margin: 0 0.5rem;
       font-size: 1.5rem;
       text-decoration: none;
+    }
+
+    .socials a:hover {
+      color: var(--link-hover);
     }
 
     @media (max-width: 768px) {
@@ -205,45 +220,37 @@
       nav {
         display: none;
         flex-direction: column;
-        gap: 1rem;
         width: 100%;
         margin-top: 1rem;
       }
 
-      nav.show {
+      nav.open {
         display: flex;
       }
     }
   </style>
 </head>
 <body>
-  <!-- TODO LIST -->
-  <!-- 
-    TODO:
-    - Replace placeholder logo (your-logo.png) with your actual logo.
-    - Insert real product images for .product-card sections.
-    - Adjust text content as needed for About and Contact sections.
-    - Replace any placeholder links with working URLs or forms.
-  -->
+  <!-- TODO: Replace 'your-logo.png' with your actual logo -->
+  <!-- TODO: Insert real product images in 'img src=""' tags -->
+  <!-- TODO: Add any additional content you want to include in the hero/about/contact sections -->
 
-  <!-- HEADER -->
   <header>
     <div class="logo">
       <img src="your-logo.png" alt="Miricl Logo">
     </div>
     <button class="menu-toggle" onclick="toggleMenu()">Menu</button>
-    <nav id="nav-menu">
+    <nav id="nav">
       <a href="#about">About</a>
       <a href="#products">Products</a>
       <a href="#contact">Contact</a>
     </nav>
     <div class="search-bar">
-      <input type="text" placeholder="Search..." />
+      <input type="text" placeholder="Search...">
       <button><i class="fas fa-search"></i></button>
     </div>
   </header>
 
-  <!-- HERO -->
   <section class="hero">
     <div>
       <h2>Drink Different with Miricl</h2>
@@ -252,43 +259,52 @@
     </div>
   </section>
 
-  <!-- ABOUT -->
   <section id="about" class="about">
-    <h3>Our Story</h3>
-    <p>Miricl is more than a drink—it's a lifestyle. We started with a mission to innovate the way you hydrate.</p>
+    <h3>===Our Story===</h3>
+    <p>Miricl is more than a drink—it's a lifestyle. We started with a mission to innovate the way you hydrate. Clean, bold, and crafted with care.</p>
   </section>
 
-  <!-- PRODUCTS -->
   <section id="products" class="products">
-    <h3>Our Beverages</h3>
+    <h3>===Our Beverages===</h3>
     <div class="product-grid">
       <div class="product-card">
         <img src="can-product.jpg" alt="Miricl Original Can">
         <h4>Miricl Original</h4>
         <p>Signature crisp flavor with a smooth finish.</p>
-        <a href="#" class="order-button">Order Now</a>
+        <a href="mailto:shopmiricl@gmail.com?subject=Order%20Miricl%20Original" class="order-button">Order Now</a>
+      </div>
+      <div class="product-card">
+        <img src="sachet-product.jpg" alt="Miricl Citrus Sachet">
+        <h4>Miricl Citrus</h4>
+        <p>A tangy twist infused with real citrus notes.</p>
+        <a href="mailto:shopmiricl@gmail.com?subject=Order%20Miricl%20Citrus" class="order-button">Order Now</a>
+      </div>
+      <div class="product-card">
+        <img src="sachet-product.jpg" alt="Miricl Zero Sachet">
+        <h4>Miricl Zero</h4>
+        <p>All the flavor. Zero sugar. Zero compromise.</p>
+        <a href="mailto:shopmiricl@gmail.com?subject=Order%20Miricl%20Zero" class="order-button">Order Now</a>
       </div>
     </div>
   </section>
 
-  <!-- CONTACT -->
   <section id="contact" class="contact">
-    <h3>Contact Us</h3>
-    <p>Email: <a href="mailto:shopmiricl@gmail.com" style="color: var(--footer-link); text-decoration: none;">shopmiricl@gmail.com</a></p>
-    <p>Instagram: <a href="https://instagram.com/shopmiricl" style="color: var(--footer-link); text-decoration: none;">@shopmiricl</a></p>
+    <h3>===Contact Us===</h3>
+    <p>Email: <a href="mailto:shopmiricl@gmail.com" style="color: var(--link-hover); text-decoration: none;">shopmiricl@gmail.com</a></p>
+    <p>Follow us on Instagram: <a href="https://instagram.com/shopmiricl" style="color: var(--link-hover); text-decoration: none;" target="_blank">@shopmiricl</a></p>
   </section>
 
-  <!-- FOOTER -->
   <footer>
     <div class="socials">
-      <a href="https://instagram.com/shopmiricl" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://instagram.com/shopmiricl" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
     </div>
     <p>© 2025 Miricl. All rights reserved.</p>
   </footer>
 
   <script>
     function toggleMenu() {
-      document.getElementById('nav-menu').classList.toggle('show');
+      const nav = document.getElementById('nav');
+      nav.classList.toggle('open');
     }
   </script>
 </body>
