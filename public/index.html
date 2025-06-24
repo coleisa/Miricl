@@ -1,17 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- ======================== META & TITLE ======================== -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Miricl - Drink Different</title>
-
-  <!-- ======================== EXTERNAL STYLES & ICONS ======================== -->
   <link href="https://fonts.googleapis.com/css2?family=Helvetica+Neue&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
-  <!-- ======================== INTERNAL STYLES ======================== -->
   <style>
     :root {
       --primary: #0a0a23;
@@ -19,7 +13,6 @@
       --text: #ffffff;
       --accent: #4c8eff;
       --grey: #cccccc;
-      --navy: #101030;
     }
 
     * {
@@ -36,7 +29,6 @@
       scroll-behavior: smooth;
     }
 
-    /* ========== HEADER ========== */
     header {
       background: var(--secondary);
       padding: 1rem 2rem;
@@ -46,75 +38,60 @@
       position: sticky;
       top: 0;
       z-index: 1000;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
     }
 
     .logo img {
       height: 40px;
+      margin-right: 10px;
+    }
+
+    nav {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
     }
 
     nav a {
       color: var(--text);
-      margin-left: 1.5rem;
       text-decoration: none;
       font-size: 1rem;
     }
 
-    /* ========== SEARCH ========== */
-    .search-filter {
+    .search-bar {
       display: flex;
-      justify-content: flex-end;
       align-items: center;
-      padding: 1rem 2rem;
-      background-color: var(--navy);
+      margin-top: 0.5rem;
+      margin-left: auto;
     }
 
-    .search-filter input {
+    .search-bar input {
       padding: 0.5rem;
-      border-radius: 6px;
       border: none;
-      width: 200px;
-      background-color: var(--secondary);
-      color: white;
+      border-radius: 5px 0 0 5px;
+      background-color: var(--grey);
+      color: #000;
+      font-size: 1rem;
     }
 
-    .search-filter button {
-      background: none;
+    .search-bar button {
+      padding: 0.5rem 1rem;
+      background-color: var(--accent);
+      color: var(--text);
       border: none;
-      color: white;
-      margin-left: 0.5rem;
-      font-size: 1rem;
+      border-radius: 0 5px 5px 0;
       cursor: pointer;
+      font-weight: bold;
       display: flex;
       align-items: center;
+      gap: 0.5rem;
     }
 
-    .search-filter i {
-      margin-right: 0.3rem;
-    }
-
-    /* ========== CATEGORY FILTER ========== */
-    .category-buttons {
-      text-align: center;
-      margin: 2rem 0 0;
-    }
-
-    .category-buttons button {
-      background-color: var(--navy);
-      color: white;
-      border: none;
-      margin: 0 1rem;
-      padding: 0.75rem 1.5rem;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 1.1rem;
-      font-weight: bold;
-    }
-
-    .category-buttons button:hover {
-      background-color: var(--accent);
-    }
-
-    /* ========== HERO SECTION ========== */
     .hero {
       height: 90vh;
       display: flex;
@@ -123,26 +100,7 @@
       text-align: center;
       padding: 2rem;
       background: linear-gradient(to bottom right, var(--primary), var(--secondary));
-      position: relative;
-    }
-
-    .hero::before {
-      content: "";
-      background-image: url('nature-silhouette.png');
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: contain;
-      opacity: 0.05;
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-    }
-
-    .hero > div {
-      z-index: 1;
+      animation: fadeIn 2s ease-in;
     }
 
     .hero h2 {
@@ -175,6 +133,24 @@
     section {
       padding: 4rem 2rem;
       text-align: center;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.6s ease-out;
+    }
+
+    section.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .products, .about, .contact {
+      background-color: var(--secondary);
+      margin-top: 2rem;
+    }
+
+    .products h3, .about h3, .contact h3 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
     }
 
     .product-grid {
@@ -185,7 +161,7 @@
     }
 
     .product-card {
-      background: var(--navy);
+      background: #111;
       padding: 1rem;
       border-radius: 10px;
       transition: transform 0.3s ease;
@@ -233,16 +209,24 @@
       transform: scale(1.2);
     }
 
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
     @media (max-width: 600px) {
       .hero h2 { font-size: 2rem; }
       .hero p { font-size: 1rem; }
-      nav a { margin-left: 1rem; font-size: 0.9rem; }
-      .search-filter { flex-direction: column; align-items: flex-start; }
+      nav { flex-direction: column; gap: 0.5rem; }
+      .search-bar {
+        margin-top: 1rem;
+        justify-content: center;
+        width: 100%;
+      }
     }
   </style>
 </head>
 <body>
-  <!-- ======================== HEADER ======================== -->
   <header>
     <div class="logo">
       <img src="your-logo.png" alt="Miricl Logo">
@@ -252,20 +236,76 @@
       <a href="#products">Products</a>
       <a href="#contact">Contact</a>
     </nav>
+    <div class="search-bar">
+      <input type="text" placeholder="Search..." />
+      <button><i class="fas fa-search"></i> Search</button>
+    </div>
   </header>
 
-  <!-- ======================== SEARCH ======================== -->
-  <div class="search-filter">
-    <input type="text" id="productSearch" placeholder="Search products...">
-    <button onclick="searchProducts()"><i class="fas fa-search"></i> Search</button>
-  </div>
+  <section class="hero">
+    <div>
+      <h2>Drink Different with Miricl</h2>
+      <p>Discover a new world of bold, refreshing beverages crafted to elevate your everyday experience.</p>
+      <a href="#products" class="cta-button">Explore Beverages</a>
+    </div>
+  </section>
 
-  <!-- ======================== CATEGORY FILTER ======================== -->
-  <div class="category-buttons">
-    <button onclick="filterCategory('sachet')">Sachets</button>
-    <button onclick="filterCategory('can')">Cans</button>
-  </div>
+  <section id="about" class="about">
+    <h3>Our Story</h3>
+    <p>Miricl is more than a drink—it's a lifestyle. We started with a mission to innovate the way you hydrate. Clean, bold, and crafted with care.</p>
+  </section>
 
-  <!-- ======================== REMAINDER OF CONTENT... (Unchanged) ======================== -->
+  <section id="products" class="products">
+    <h3>Our Beverages</h3>
+    <div class="product-grid">
+      <div class="product-card">
+        <img src="can-product.jpg" alt="Miricl Original Can">
+        <h4>Miricl Original</h4>
+        <p>Signature crisp flavor with a smooth finish.</p>
+        <a href="mailto:shopmiricl@gmail.com?subject=Order%20Miricl%20Original" class="order-button">Order Now</a>
+      </div>
+      <div class="product-card">
+        <img src="sachet-product.jpg" alt="Miricl Citrus Sachet">
+        <h4>Miricl Citrus</h4>
+        <p>A tangy twist infused with real citrus notes.</p>
+        <a href="mailto:shopmiricl@gmail.com?subject=Order%20Miricl%20Citrus" class="order-button">Order Now</a>
+      </div>
+      <div class="product-card">
+        <img src="sachet-product.jpg" alt="Miricl Zero Sachet">
+        <h4>Miricl Zero</h4>
+        <p>All the flavor. Zero sugar. Zero compromise.</p>
+        <a href="mailto:shopmiricl@gmail.com?subject=Order%20Miricl%20Zero" class="order-button">Order Now</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <h3>Contact Us</h3>
+    <p>Email: <a href="mailto:shopmiricl@gmail.com" style="color: var(--accent);">shopmiricl@gmail.com</a></p>
+    <p>Follow us on Instagram: <a href="https://instagram.com/shopmiricl" style="color: var(--accent);" target="_blank">@shopmiricl</a></p>
+  </section>
+
+  <footer>
+    <div class="socials">
+      <a href="https://instagram.com/shopmiricl" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+    </div>
+    <p>© 2025 Miricl. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+        }
+      });
+    }, {
+      threshold: 0.1
+    });
+
+    document.querySelectorAll('section').forEach(section => {
+      observer.observe(section);
+    });
+  </script>
 </body>
 </html>
