@@ -8,12 +8,12 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
-      --primary: #0d1b2a;
+      --primary: #0a1623;
       --secondary: #0a0a23;
       --text: #ffffff;
       --accent: #14213d;
       --grey: #cccccc;
-      --footer-link: #1f3b6e;
+      --footer-link: #173057;
     }
 
     * {
@@ -39,17 +39,17 @@
       position: sticky;
       top: 0;
       z-index: 1000;
+      flex-wrap: wrap;
     }
 
     .logo img {
-      height: 60px; /* Increased height */
-      width: auto;  /* Maintain aspect ratio */
-      max-width: 180px; /* Slightly increase max-width */
+      height: 60px;
+      width: auto;
     }
 
     .menu-toggle {
       display: none;
-      background-color: var(--secondary);
+      background-color: var(--primary);
       color: white;
       border: 2px solid var(--accent);
       padding: 0.5rem 1rem;
@@ -74,6 +74,7 @@
       align-items: center;
       background-color: var(--accent);
       border-radius: 5px;
+      margin-top: 0.5rem;
     }
 
     .search-bar input {
@@ -99,7 +100,7 @@
       font-weight: bold;
       display: flex;
       align-items: center;
-      margin-left: 5px; /* Shift button slightly to avoid overlap */
+      margin-left: 4px;
     }
 
     .hero {
@@ -109,7 +110,7 @@
       justify-content: center;
       text-align: center;
       padding: 2rem;
-      background: linear-gradient(to bottom right, #0b132b, #1c2541);
+      background: #050a14;
     }
 
     .hero h2 {
@@ -145,6 +146,7 @@
       opacity: 0;
       transform: translateY(40px);
       transition: all 0.6s ease-out;
+      background-color: var(--primary);
     }
 
     section.in-view {
@@ -224,11 +226,6 @@
       transform: scale(1.2);
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
     @media (max-width: 768px) {
       .menu-toggle {
         display: block;
@@ -262,10 +259,10 @@
   </style>
 </head>
 <body>
-  <!-- === HEADER === -->
   <header>
     <div class="logo">
-      <img src="https://cdn.discordapp.com/attachments/1359277140364890224/1387562055589957733/Miricl_Banner.png?ex=685dcb5d&is=685c79dd&hm=0ffd5a4dfd0614f053fe7ad4cef99b7efedfbf4174c541da674396c119582c27&" alt="Miricl Logo">
+      <!-- TODO: Replace this logo image if a higher resolution version is available -->
+      <img src="https://cdn.discordapp.com/attachments/1359277140364890224/1387562055589957733/Miricl_Banner.png" alt="Miricl Logo">
     </div>
     <button class="menu-toggle" onclick="toggleMenu()">Menu</button>
     <nav id="nav-menu">
@@ -279,7 +276,75 @@
     </div>
   </header>
 
-  <!-- Rest of body remains unchanged... -->
+  <section class="hero">
+    <div>
+      <h2>Drink Different with Miricl</h2>
+      <p>Discover a new world of bold, refreshing beverages crafted to elevate your everyday experience.</p>
+      <a href="#products" class="cta-button">Explore Beverages</a>
+    </div>
+  </section>
 
+  <section id="about" class="about">
+    <h3>Our Story</h3>
+    <p>Miricl is more than a drink—it's a lifestyle. We started with a mission to innovate the way you hydrate. Clean, bold, and crafted with care.</p>
+  </section>
+
+  <section id="products" class="products">
+    <h3>Our Beverages</h3>
+    <div class="product-grid">
+      <!-- TODO: Replace with your own product image -->
+      <div class="product-card">
+        <img src="can-product.jpg" alt="Miricl Original Can">
+        <h4>Miricl Original</h4>
+        <p>Signature crisp flavor with a smooth finish.</p>
+        <a href="mailto:shopmiricl@gmail.com?subject=Order%20Miricl%20Original" class="order-button">Order Now</a>
+      </div>
+      <div class="product-card">
+        <!-- TODO: Replace with your own product image -->
+        <img src="sachet-product.jpg" alt="Miricl Citrus Sachet">
+        <h4>Miricl Citrus</h4>
+        <p>A tangy twist infused with real citrus notes.</p>
+        <a href="mailto:shopmiricl@gmail.com?subject=Order%20Miricl%20Citrus" class="order-button">Order Now</a>
+      </div>
+      <div class="product-card">
+        <!-- TODO: Replace with your own product image -->
+        <img src="sachet-product.jpg" alt="Miricl Zero Sachet">
+        <h4>Miricl Zero</h4>
+        <p>All the flavor. Zero sugar. Zero compromise.</p>
+        <a href="mailto:shopmiricl@gmail.com?subject=Order%20Miricl%20Zero" class="order-button">Order Now</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <h3>Contact Us</h3>
+    <p>Email: <a href="mailto:shopmiricl@gmail.com" style="color: var(--footer-link); text-decoration: none;">shopmiricl@gmail.com</a></p>
+    <p>Follow us on Instagram: <a href="https://instagram.com/shopmiricl" style="color: var(--footer-link); text-decoration: none;" target="_blank">@shopmiricl</a></p>
+  </section>
+
+  <footer>
+    <div class="socials">
+      <a href="https://instagram.com/shopmiricl" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+    </div>
+    <p>© 2025 Miricl. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('nav-menu').classList.toggle('show');
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('section').forEach(section => {
+      observer.observe(section);
+    });
+  </script>
 </body>
 </html>
